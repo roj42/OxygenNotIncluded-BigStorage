@@ -9,7 +9,7 @@ namespace BigStorage
         [HarmonyPatch(typeof(GeneratedBuildings), "LoadGeneratedBuildings")]
 	    public class BigStoragePatch
 	    {
-            public static LocString NAME = new LocString("Big Storage",
+            public static LocString NAME = new LocString("Big Gas Storage",
                 "STRINGS.BUILDINGS.PREFABS." + BigStorage.ID.ToUpper() + ".NAME");
                     public static LocString DESC = new LocString("Using more metal gives you more space!",
                 "STRINGS.BUILDINGS.PREFABS." + BigStorage.ID.ToUpper() + ".DESC");
