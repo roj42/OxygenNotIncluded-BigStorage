@@ -54,7 +54,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BigStorageConfig.cs" />
+    <Compile Include="BigLiquidStorageConfig.cs" />
+    <Compile Include="BigGasStorageConfig.cs" />
     <Compile Include="BigStorageMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

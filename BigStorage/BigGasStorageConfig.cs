@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BigStorage
 {
-    public class BigStorage : IBuildingConfig
+    public class BigGasStorage : IBuildingConfig
     {
         // Token: 0x0400670D RID: 26381
         public const string ID = "BigGasReservoir";
