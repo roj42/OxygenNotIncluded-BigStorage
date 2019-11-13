@@ -19,6 +19,13 @@ namespace BigStorage
         // Token: 0x0400679D RID: 26525
         private const int HEIGHT = 3;
 
+        public static LocString NAME = new LocString("Big Liquid Storage",
+            "STRINGS.BUILDINGS.PREFABS." + ID.ToUpper() + ".NAME");
+        public static LocString DESC = new LocString("Compacted into buckyballs, maybe. Who knows? Big Liquid Storage by RoJCo™",
+            "STRINGS.BUILDINGS.PREFABS." + ID.ToUpper() + ".DESC");
+        public static LocString EFFECT = new LocString("Five times the storage through the magic of superdense alloys.",
+            "STRINGS.BUILDINGS.PREFABS." + ID.ToUpper() + ".EFFECT");
+
         // Token: 0x0600606A RID: 24682 RVA: 0x001D975C File Offset: 0x001D7B5C
         public override BuildingDef CreateBuildingDef()
         {

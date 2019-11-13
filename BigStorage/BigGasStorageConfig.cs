@@ -18,6 +18,13 @@ namespace BigStorage
         // Token: 0x04006710 RID: 26384
         private const int HEIGHT = 3;
 
+        public static LocString NAME = new LocString("Big Gas Storage",
+            "STRINGS.BUILDINGS.PREFABS." + ID.ToUpper() + ".NAME");
+        public static LocString DESC = new LocString("Using more metal gives you more space! Big Gas Storage by RoJCo™",
+            "STRINGS.BUILDINGS.PREFABS." + ID.ToUpper() + ".DESC");
+        public static LocString EFFECT = new LocString("Five times the space at twenty times the pressure!",
+            "STRINGS.BUILDINGS.PREFABS." + ID.ToUpper() + ".EFFECT");
+
         // Token: 0x04006711 RID: 26385
         public static readonly List<Storage.StoredItemModifier> ReservoirStoredItemModifiers = new List<Storage.StoredItemModifier>
         {
