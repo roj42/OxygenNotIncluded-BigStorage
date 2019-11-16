@@ -3,14 +3,14 @@ using UnityEngine;
 
 namespace BigStorage
 {
-    public class BigStorageLocker : IBuildingConfig
+    public class BigSolidStorage : IBuildingConfig
     {
         // Token: 0x0400670D RID: 26381
-        public const string ID = "BigStorageBin";
+        public const string ID = "BigSolidStorage";
 
-        public static LocString NAME = new LocString("Big Storage Bin",
+        public static LocString NAME = new LocString("Big Solid Storage",
             "STRINGS.BUILDINGS.PREFABS." + ID.ToUpper() + ".NAME");
-        public static LocString DESC = new LocString("We removed the unused tea kettle and added a moon roof! Big Storage Bin by RoJCo™",
+        public static LocString DESC = new LocString("We removed the unused tea kettle and added a moon roof! Big Solid Storage by RoJCo™",
             "STRINGS.BUILDINGS.PREFABS." + ID.ToUpper() + ".DESC");
         public static LocString EFFECT = new LocString("Extra space to clean up your place!",
             "STRINGS.BUILDINGS.PREFABS." + ID.ToUpper() + ".EFFECT");
@@ -18,14 +18,14 @@ namespace BigStorage
         // Token: 0x0600641E RID: 25630 RVA: 0x001EE5A4 File Offset: 0x001EC9A4
         public override BuildingDef CreateBuildingDef()
         {
-            string id = "BigStorageBin";
+            string id = ID;
             int width = 1;
             int height = 2;
             string anim = "storagelocker_kanim";
             int hitpoints = 30;
             float construction_time = 10f;
-            float[] tier = BUILDINGS.CONSTRUCTION_MASS_KG.TIER5;
-            string[] raw_MINERALS = MATERIALS.REFINED_METALS;
+            float[] tier = BUILDINGS.CONSTRUCTION_MASS_KG.TIER3;
+            string[] raw_MINERALS = MATERIALS.RAW_METALS;
             float melting_point = 1600f;
             BuildLocationRule build_location_rule = BuildLocationRule.OnFloor;
             EffectorValues none = NOISE_POLLUTION.NONE;

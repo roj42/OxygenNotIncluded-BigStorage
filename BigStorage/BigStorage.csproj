@@ -54,6 +54,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BigBeautifulStorageLockerConfig.cs" />
     <Compile Include="BigStorageLockerConfig .cs" />
     <Compile Include="BigLiquidStorageConfig.cs" />
     <Compile Include="BigGasStorageConfig.cs" />
