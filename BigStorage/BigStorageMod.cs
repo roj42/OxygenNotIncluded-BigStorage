@@ -24,10 +24,14 @@ namespace BigStorage
                 Strings.Add(BigLiquidStorage.DESC.key.String, BigLiquidStorage.DESC.text);
                 Strings.Add(BigLiquidStorage.EFFECT.key.String, BigLiquidStorage.EFFECT.text);
                 ModUtil.AddBuildingToPlanScreen("Base", BigLiquidStorage.ID);
-                Strings.Add(BigStorageLocker.NAME.key.String, BigStorageLocker.NAME.text);
-                Strings.Add(BigStorageLocker.DESC.key.String, BigStorageLocker.DESC.text);
-                Strings.Add(BigStorageLocker.EFFECT.key.String, BigStorageLocker.EFFECT.text);
-                ModUtil.AddBuildingToPlanScreen("Base", BigStorageLocker.ID);
+                Strings.Add(BigSolidStorage.NAME.key.String, BigSolidStorage.NAME.text);
+                Strings.Add(BigSolidStorage.DESC.key.String, BigSolidStorage.DESC.text);
+                Strings.Add(BigSolidStorage.EFFECT.key.String, BigSolidStorage.EFFECT.text);
+                ModUtil.AddBuildingToPlanScreen("Base", BigSolidStorage.ID);
+                Strings.Add(BigBeautifulStorageLocker.NAME.key.String, BigBeautifulStorageLocker.NAME.text);
+                Strings.Add(BigBeautifulStorageLocker.DESC.key.String, BigBeautifulStorageLocker.DESC.text);
+                Strings.Add(BigBeautifulStorageLocker.EFFECT.key.String, BigBeautifulStorageLocker.EFFECT.text);
+                ModUtil.AddBuildingToPlanScreen("Base", BigBeautifulStorageLocker.ID);
             }
 
             private static void Postfix()
@@ -36,8 +40,10 @@ namespace BigStorage
                 BuildingConfigManager.Instance.RegisterBuilding(obj as IBuildingConfig);
                 object obj2 = Activator.CreateInstance(typeof(BigLiquidStorage));
                 BuildingConfigManager.Instance.RegisterBuilding(obj2 as IBuildingConfig);
-                object obj3 = Activator.CreateInstance(typeof(BigStorageLocker));
+                object obj3 = Activator.CreateInstance(typeof(BigSolidStorage));
                 BuildingConfigManager.Instance.RegisterBuilding(obj3 as IBuildingConfig);
+                object obj4 = Activator.CreateInstance(typeof(BigBeautifulStorageLocker));
+                BuildingConfigManager.Instance.RegisterBuilding(obj4 as IBuildingConfig);
             }
 
             [HarmonyPatch(typeof(Db), "Initialize")]
@@ -49,8 +55,10 @@ namespace BigStorage
                     Techs.TECH_GROUPING["LiquidTemperature"] = ls.ToArray();
                     List<string> ls2 = new List<string>(Techs.TECH_GROUPING["Catalytics"]) { BigGasStorage.ID };
                     Techs.TECH_GROUPING["Catalytics"] = ls2.ToArray();
-                    List<string> ls3 = new List<string>(Techs.TECH_GROUPING["RefinedObjects"]) { BigStorageLocker.ID };
+                    List<string> ls3 = new List<string>(Techs.TECH_GROUPING["RefinedObjects"]) { BigSolidStorage.ID };
                     Techs.TECH_GROUPING["RefinedObjects"] = ls3.ToArray();
+                    List<string> ls4 = new List<string>(Techs.TECH_GROUPING["Smelting"]) { BigBeautifulStorageLocker.ID };
+                    Techs.TECH_GROUPING["Smelting"] = ls4.ToArray();
                 }
             }
         }
