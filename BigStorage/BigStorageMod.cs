@@ -1,19 +1,37 @@
 ﻿using Database;
 using Harmony;
+using CaiLib.Config;
+using CaiLib;
 using System;
 using System.Collections.Generic;
 
 namespace BigStorage
 {
+    public class ModInfo : IModInfo
+	{
+		// Token: 0x17000002 RID: 2
+		// (get) Token: 0x06000005 RID: 5 RVA: 0x00002074 File Offset: 0x00000274
+		public string Name { get; } = "Big Storage";
+	}
+
     public class BigStorageConfigMod
     {
+
+   		public static ConfigManager<Config> _configManager;
+
+		public static class Mod_OnLoad
+		{
+			public static void OnLoad()
+			{
+				CaiLib.Logger.Logger.LogInit();
+				BigStorageConfigMod._configManager = new ConfigManager<Config>(null, "config.json");
+				BigStorageConfigMod._configManager.ReadConfig(null);
+			}
+		}
+
         [HarmonyPatch(typeof(GeneratedBuildings), "LoadGeneratedBuildings")]
         public class BigStoragePatch
         {
-            
-
-            
-
             private static void Prefix()
             {
                 Strings.Add(BigGasStorage.NAME.key.String, BigGasStorage.NAME.text);
