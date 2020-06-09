@@ -52,19 +52,7 @@ namespace BigStorage
                 ModUtil.AddBuildingToPlanScreen("Base", BigBeautifulStorageLocker.ID);
             }
 
-            private static void Postfix()
-            {
-                object obj = Activator.CreateInstance(typeof(BigGasStorage));
-                BuildingConfigManager.Instance.RegisterBuilding(obj as IBuildingConfig);
-                object obj2 = Activator.CreateInstance(typeof(BigLiquidStorage));
-                BuildingConfigManager.Instance.RegisterBuilding(obj2 as IBuildingConfig);
-                object obj3 = Activator.CreateInstance(typeof(BigSolidStorage));
-                BuildingConfigManager.Instance.RegisterBuilding(obj3 as IBuildingConfig);
-                object obj4 = Activator.CreateInstance(typeof(BigBeautifulStorageLocker));
-                BuildingConfigManager.Instance.RegisterBuilding(obj4 as IBuildingConfig);
-            }
-
-            [HarmonyPatch(typeof(Db), "Initialize")]
+             [HarmonyPatch(typeof(Db), "Initialize")]
             public class BigStorageDbPatch
             {
                 private static void Prefix()
