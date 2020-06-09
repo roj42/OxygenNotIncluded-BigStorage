@@ -45,7 +45,7 @@ namespace BigStorage
             storage.showInUI = true;
             storage.allowItemRemoval = true;
             storage.showDescriptor = true;
-            storage.capacityKg = 100000f;
+            storage.capacityKg = BigStorageConfigMod._configManager.Config.BigBeautifulStorageLockerCapacity;
             storage.storageFilters = STORAGEFILTERS.NOT_EDIBLE_SOLIDS;
             storage.storageFullMargin = STORAGE.STORAGE_LOCKER_FILLED_MARGIN;
             storage.fetchCategory = Storage.FetchCategory.GeneralStorage;
