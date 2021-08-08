@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
-
 namespace BigStorage
 {
     public class BigGasStorage : IBuildingConfig
