@@ -55,6 +55,7 @@ namespace BigStorage
             storage.storageFilters = STORAGEFILTERS.GASES;
             storage.capacityKg = BigStorageConfigMod._configManager.Config.BigGasLockerCapacity;
             storage.SetDefaultStoredItemModifiers(GasReservoirConfig.ReservoirStoredItemModifiers);
+            storage.showCapacityAsMainStatus = true;
             ConduitConsumer conduitConsumer = go.AddOrGet<ConduitConsumer>();
             conduitConsumer.conduitType = ConduitType.Gas;
             conduitConsumer.ignoreMinMassCheck = true;
