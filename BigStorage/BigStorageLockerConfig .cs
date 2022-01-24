@@ -49,6 +49,7 @@ namespace BigStorage
             storage.storageFilters = STORAGEFILTERS.NOT_EDIBLE_SOLIDS;
             storage.storageFullMargin = STORAGE.STORAGE_LOCKER_FILLED_MARGIN;
             storage.fetchCategory = Storage.FetchCategory.GeneralStorage;
+            storage.showCapacityAsMainStatus = true;
             CopyBuildingSettings copyBuildingSettings = go.AddOrGet<CopyBuildingSettings>();
             copyBuildingSettings.copyGroupTag = GameTags.StorageLocker;
             go.AddOrGet<StorageLocker>();

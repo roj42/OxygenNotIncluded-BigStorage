@@ -50,6 +50,7 @@ namespace BigStorage
             storage.storageFilters = STORAGEFILTERS.LIQUIDS;
             storage.capacityKg = BigStorageConfigMod._configManager.Config.BigLiquidStorageCapacity;
             storage.SetDefaultStoredItemModifiers(GasReservoirConfig.ReservoirStoredItemModifiers);
+            storage.showCapacityAsMainStatus = true;
             ConduitConsumer conduitConsumer = go.AddOrGet<ConduitConsumer>();
             conduitConsumer.conduitType = ConduitType.Liquid;
             conduitConsumer.ignoreMinMassCheck = true;
