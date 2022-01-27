@@ -49,10 +49,13 @@ namespace BigStorage
             storage.storageFilters = STORAGEFILTERS.NOT_EDIBLE_SOLIDS;
             storage.storageFullMargin = STORAGE.STORAGE_LOCKER_FILLED_MARGIN;
             storage.fetchCategory = Storage.FetchCategory.GeneralStorage;
+            storage.showCapacityStatusItem = true;
             storage.showCapacityAsMainStatus = true;
             CopyBuildingSettings copyBuildingSettings = go.AddOrGet<CopyBuildingSettings>();
             copyBuildingSettings.copyGroupTag = GameTags.StorageLocker;
             go.AddOrGet<StorageLocker>();
+            go.AddOrGet<UserNameable>();
+            go.AddOrGetDef<RocketUsageRestriction.Def>();
         }
 
         // Token: 0x06006420 RID: 25632 RVA: 0x001EE6AA File Offset: 0x001ECAAA
