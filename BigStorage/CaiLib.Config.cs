@@ -3,18 +3,13 @@ using System.IO;
 using System.Reflection;
 using CaiLib.Logger;
 using Newtonsoft.Json;
-
 namespace CaiLib.Config
 {
 	// Token: 0x0200000D RID: 13
 	public class ConfigManager<T> where T : class, new()
 	{
-		// Token: 0x17000004 RID: 4
-		// (get) Token: 0x0600001B RID: 27 RVA: 0x000025C0 File Offset: 0x000007C0
-		// (set) Token: 0x0600001C RID: 28 RVA: 0x000025C8 File Offset: 0x000007C8
-		public T Config { get; set; }
 
-		// Token: 0x0600001D RID: 29 RVA: 0x000025D4 File Offset: 0x000007D4
+		public T Config { get; set; }
 		public ConfigManager(string executingAssemblyPath = null, string configFileName = "Config.json")
 		{
 			if (executingAssemblyPath == null)

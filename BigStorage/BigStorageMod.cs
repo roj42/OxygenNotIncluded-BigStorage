@@ -1,5 +1,5 @@
 ﻿using Database;
-using Harmony;
+using HarmonyLib;
 using CaiLib.Config;
 using CaiLib;
 using System;
@@ -14,25 +14,23 @@ namespace BigStorage
 		public string Name { get; } = "Big Storage";
 	}
 
-    public class BigStorageConfigMod
+    public class BigStorageConfigMod : KMod.UserMod2
     {
 
    		public static ConfigManager<Config> _configManager;
-
-		public static class Mod_OnLoad
+		public override void OnLoad(Harmony harmony)
 		{
-			public static void OnLoad()
-			{
-				CaiLib.Logger.Logger.LogInit();
-				BigStorageConfigMod._configManager = new ConfigManager<Config>(null, "config.json");
-				BigStorageConfigMod._configManager.ReadConfig(null);
-			}
-		}
+			CaiLib.Logger.Logger.LogInit();
+			BigStorageConfigMod._configManager = new ConfigManager<Config>(null, "config.json");
+			BigStorageConfigMod._configManager.ReadConfig(null);
+               harmony.PatchAll();
+        }
+
 
         [HarmonyPatch(typeof(GeneratedBuildings), "LoadGeneratedBuildings")]
         public class BigStoragePatch
         {
-            private static void Prefix()
+            public static void Prefix()
             {
                 Strings.Add(BigGasStorage.NAME.key.String, BigGasStorage.NAME.text);
                 Strings.Add(BigGasStorage.DESC.key.String, BigGasStorage.DESC.text);
@@ -52,19 +50,15 @@ namespace BigStorage
                 ModUtil.AddBuildingToPlanScreen("Base", BigBeautifulStorageLocker.ID);
             }
 
-             [HarmonyPatch(typeof(Db), "Initialize")]
+            [HarmonyPatch(typeof(Db), "Initialize")]
             public class BigStorageDbPatch
             {
-                private static void Prefix()
+                public static void Postfix() // Prefix ==TO==> Postfix
                 {
-                    List<string> ls = new List<string>(Techs.TECH_GROUPING["LiquidTemperature"]) { BigLiquidStorage.ID };
-                    Techs.TECH_GROUPING["LiquidTemperature"] = ls.ToArray();
-                    List<string> ls2 = new List<string>(Techs.TECH_GROUPING["Catalytics"]) { BigGasStorage.ID };
-                    Techs.TECH_GROUPING["Catalytics"] = ls2.ToArray();
-                    List<string> ls3 = new List<string>(Techs.TECH_GROUPING["RefinedObjects"]) { BigSolidStorage.ID };
-                    Techs.TECH_GROUPING["RefinedObjects"] = ls3.ToArray();
-                    List<string> ls4 = new List<string>(Techs.TECH_GROUPING["Smelting"]) { BigBeautifulStorageLocker.ID };
-                    Techs.TECH_GROUPING["Smelting"] = ls4.ToArray();
+                    Db.Get().Techs.Get("LiquidTemperature").unlockedItemIDs.Add(BigLiquidStorage.ID);
+                    Db.Get().Techs.Get("Catalytics").unlockedItemIDs.Add(BigGasStorage.ID);
+                    Db.Get().Techs.Get("RefinedObjects").unlockedItemIDs.Add(BigSolidStorage.ID);
+                    Db.Get().Techs.Get("Smelting").unlockedItemIDs.Add(BigBeautifulStorageLocker.ID);
                 }
             }
         }
