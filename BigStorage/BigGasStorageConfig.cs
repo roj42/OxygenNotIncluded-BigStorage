@@ -43,6 +43,12 @@ namespace BigStorage
             buildingDef.AudioCategory = "HollowMetal";
             buildingDef.UtilityInputOffset = new CellOffset(1, 2);
             buildingDef.UtilityOutputOffset = new CellOffset(0, 0);
+            buildingDef.LogicOutputPorts = new List<LogicPorts.Port>()
+            {
+                LogicPorts.Port.OutputPort(SmartReservoir.PORT_ID, new CellOffset(0, 0), (string) STRINGS.BUILDINGS.PREFABS.SMARTRESERVOIR.LOGIC_PORT, (string) STRINGS.BUILDINGS.PREFABS.SMARTRESERVOIR.LOGIC_PORT_ACTIVE, (string) STRINGS.BUILDINGS.PREFABS.SMARTRESERVOIR.LOGIC_PORT_INACTIVE)
+            };
+            GeneratedBuildings.RegisterWithOverlay(OverlayScreen.GasVentIDs, "GasReservoir");
+
             return buildingDef;
         }
 
@@ -55,7 +61,9 @@ namespace BigStorage
             storage.storageFilters = STORAGEFILTERS.GASES;
             storage.capacityKg = BigStorageConfigMod._configManager.Config.BigGasLockerCapacity;
             storage.SetDefaultStoredItemModifiers(GasReservoirConfig.ReservoirStoredItemModifiers);
+            storage.showCapacityStatusItem = true;
             storage.showCapacityAsMainStatus = true;
+            go.AddOrGet<SmartReservoir>();
             ConduitConsumer conduitConsumer = go.AddOrGet<ConduitConsumer>();
             conduitConsumer.conduitType = ConduitType.Gas;
             conduitConsumer.ignoreMinMassCheck = true;
@@ -71,6 +79,7 @@ namespace BigStorage
         public override void DoPostConfigureComplete(GameObject go)
         {
             go.AddOrGetDef<StorageController.Def>();
+            go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayBehindConduits);
         }
 
 
