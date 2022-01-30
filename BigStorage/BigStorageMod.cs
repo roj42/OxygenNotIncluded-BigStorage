@@ -3,6 +3,7 @@ using HarmonyLib;
 using CaiLib.Config;
 using CaiLib;
 using System;
+using UnityEngine;
 using System.Collections.Generic;
 
 namespace BigStorage
@@ -21,9 +22,9 @@ namespace BigStorage
 		public override void OnLoad(Harmony harmony)
 		{
 			CaiLib.Logger.Logger.LogInit();
-			BigStorageConfigMod._configManager = new ConfigManager<Config>(null, "config.json");
-			BigStorageConfigMod._configManager.ReadConfig(null);
-               harmony.PatchAll();
+			_configManager = new ConfigManager<Config>(null, "config.json");
+			_configManager.ReadConfig(null);
+            harmony.PatchAll();
         }
 
 
@@ -61,7 +62,90 @@ namespace BigStorage
                     Db.Get().Techs.Get("Smelting").unlockedItemIDs.Add(BigBeautifulStorageLocker.ID);
                 }
             }
-        }
 
+            private static Color32 defaultColor = new Color32(_configManager.Config.Red, _configManager.Config.Green, _configManager.Config.Blue, 255);
+            private static Color32 beautifulColor = new Color32(_configManager.Config.BeautifulRed, _configManager.Config.BeautifulGreen, _configManager.Config.BeautifulBlue, 255);
+
+
+
+            [HarmonyPatch(typeof(FilteredStorage), "OnFilterChanged")]
+            public static class FilteredStorage_OnFilterChanged
+            {
+                public static void Postfix(KMonoBehaviour ___root, Tag[] tags)
+                {
+                    if (!IsActive(tags)) {
+                        return;
+                    }
+                    try{
+                       
+                        KAnimControllerBase kanim = ___root.GetComponent<KAnimControllerBase>();
+                            if (kanim != null) {
+                                if (___root.name.ToString().StartsWith("BigSolidStorage")){
+                                    kanim.TintColour = defaultColor;
+                                CaiLib.Logger.Logger.Log(string.Concat("Updating Filterable Object Color:", ___root.name.ToString()));
+                                }
+                                if ( ___root.name.ToString().StartsWith("BigBeautifulStorage")){
+                                    kanim.TintColour = beautifulColor;
+                                CaiLib.Logger.Logger.Log(string.Concat("Updating Filterable Object Color:", ___root.name.ToString()));
+                                }
+                            }
+                    }
+                    catch (Exception ex){
+                        CaiLib.Logger.Logger.Log(ex.ToString());
+                    }
+                }
+                private static bool IsActive(Tag[] tags) => tags != null && (uint) tags.Length > 0U;
+            }
+
+            [HarmonyPatch(typeof(Game), "OnSpawn")]
+            public static class GameStart
+            {
+                public static void Postfix() => TryInitMod();
+
+                    private static void ApplyColorToBuilding(BuildingComplete building)
+                    {
+                        if (building.name.ToString().StartsWith("BigLiquidStorage") || building.name.ToString().StartsWith("BigGasReservoir"))
+                        {
+                            KAnimControllerBase kanim = building.GetComponent<KAnimControllerBase>();
+                            if (kanim != null)
+                            {
+                                kanim.TintColour = defaultColor;
+                                CaiLib.Logger.Logger.Log(string.Concat("Updating Object Color:", building.name.ToString()));
+                            }
+                        }
+
+                        if (building.name.ToString().StartsWith("BigSolidStorage") || building.name.ToString().StartsWith("BigBeautifulStorage"))
+                        {
+                            TreeFilterable treeFilterable = building.GetComponent<TreeFilterable>();
+                            if (treeFilterable != null)
+                            {
+                                Traverse traverse = Traverse.Create(treeFilterable);
+                            if (building.name.ToString().StartsWith("BigSolidStorage"))
+                            {
+                                traverse.Field("filterTint").SetValue(defaultColor);
+                            }
+                            if (building.name.ToString().StartsWith("BigBeautifulStorage"))
+                            {
+                                traverse.Field("filterTint").SetValue(beautifulColor);
+                            }
+                                Tag[] array = traverse.Field<List<Tag>>("acceptedTags").Value.ToArray();
+                                treeFilterable.OnFilterChanged(array);
+                            }
+                        }
+                    }
+
+                private static void TryInitMod()
+                {
+                    try
+                    {
+                        Components.BuildingCompletes.OnAdd += new Action<BuildingComplete>(ApplyColorToBuilding);
+                    }
+                    catch (Exception ex)
+                    {
+                        CaiLib.Logger.Logger.Log(ex.ToString());
+                    }
+                }
+            }
+        }
     }
 }
