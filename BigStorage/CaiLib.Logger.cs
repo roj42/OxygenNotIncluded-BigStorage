@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 
@@ -10,20 +11,31 @@ namespace CaiLib.Logger
 		// Token: 0x06000016 RID: 22 RVA: 0x00002470 File Offset: 0x00000670
 		public static void LogInit()
 		{
-			Console.WriteLine(string.Format("{0} <<-- CaiLib -->> Loaded [ {1} ] with version {2}", Logger.Timestamp(), Logger.GetModName(), Assembly.GetExecutingAssembly().GetName().Version));
-		}
+            string message = string.Format("{0} <<-- CaiLib -->> Loaded [ {1} ] with version {2}", Logger.Timestamp(), Logger.GetModName(), Assembly.GetExecutingAssembly().GetName().Version);
+			Console.WriteLine(message);
+            //using (StreamWriter writer = File.AppendText("CailibLog.txt"))
+            //    {
+            //                writer.WriteLine(message);
+            //    }
+        }
 
 		// Token: 0x06000017 RID: 23 RVA: 0x0000249C File Offset: 0x0000069C
 		public static void Log(string message)
 		{
-			Console.WriteLine(string.Concat(new string[]
-			{
-				Logger.Timestamp(),
-				" <<-- ",
-				Logger.GetModName(),
-				" -->> ",
-				message
-			}));
+            string logline = string.Concat(new string[]
+        {
+                Logger.Timestamp(),
+                " <<-- ",
+                Logger.GetModName(),
+                " -->> ",
+                message
+        });
+			Console.WriteLine(logline);
+
+            //using (StreamWriter writer = File.AppendText("CailibLog.txt"))
+            //    {
+            //                writer.WriteLine(logline);
+            //    }
 		}
 
 		// Token: 0x06000018 RID: 24 RVA: 0x000024D4 File Offset: 0x000006D4
