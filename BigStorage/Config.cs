@@ -28,5 +28,17 @@ namespace BigStorage
         [Option("Big Liquid Storage Capacity (kg)", "Determines the capacity of the Big Liquid Storage in kg.", Format = "F1")]
         [Limit(1f, 1000000f)]
         public float BigLiquidStorageCapacity { get; set; } = 25000f;
-    }
+		[JsonProperty]
+		public byte Red { get; set; } = 0;
+		[JsonProperty]
+		public byte Green { get; set; } = 150;
+		[JsonProperty]
+		public byte Blue { get; set; } = 255;
+        [JsonProperty]
+		public byte BeautifulRed { get; set; } = 200;
+		[JsonProperty]
+		public byte BeautifulGreen { get; set; } = 0;
+		[JsonProperty]
+		public byte BeautifulBlue { get; set; } = 255;
+	}
 }

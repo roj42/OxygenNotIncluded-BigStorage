@@ -61,6 +61,5 @@ namespace BigStorage
         {
             go.AddOrGetDef<StorageController.Def>();
         }
-
     }
 }
