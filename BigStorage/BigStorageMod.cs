@@ -5,6 +5,7 @@ using CaiLib;
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using PeterHan.PLib.Options;
 
 namespace BigStorage
 {
@@ -22,8 +23,10 @@ namespace BigStorage
 		public override void OnLoad(Harmony harmony)
 		{
 			CaiLib.Logger.Logger.LogInit();
-			_configManager = new ConfigManager<Config>(null, "config.json");
-			_configManager.ReadConfig(null);
+            POptions pOptions = new POptions();
+            pOptions.RegisterOptions(this, typeof(Config));
+            BigStorageConfigMod._configManager = new ConfigManager<Config>(null, "config.json");
+			BigStorageConfigMod._configManager.ReadConfig(null);
             harmony.PatchAll();
         }
 
