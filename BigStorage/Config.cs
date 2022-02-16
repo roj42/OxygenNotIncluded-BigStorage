@@ -10,13 +10,13 @@ namespace BigStorage
     public class Config : SingletonOptions<Config>
     {
         // Capacity
-        [JsonProperty] [Option("Big Storage Locker Capacity (kg)", "Determines the capacity of the Big Storage Locker in kg.", Format = "F1")] [Limit(1f, 1000000f)]
+        [JsonProperty] [Option("Big Storage Locker Capacity (kg)", "Determines the capacity of the Big Storage Locker in kg.", Format = "F1")] [Limit(1000f, 1000000f)]
         public float BigStorageLockerCapacity { get; set; } = 100000f;
-        [JsonProperty] [Option("Big Beautiful Storage Locker Capacity (kg)", "Determines the capacity of the Big Beautiful Storage Locker in kg.", Format = "F1")] [Limit(1f, 1000000f)]
+        [JsonProperty] [Option("Big Beautiful Storage Locker Capacity (kg)", "Determines the capacity of the Big Beautiful Storage Locker in kg.", Format = "F1")] [Limit(1000f, 1000000f)]
         public float BigBeautifulStorageLockerCapacity { get; set; } = 100000f;
-        [JsonProperty] [Option("Big Gas Container Capacity (kg)", "Determines the capacity of the Big Gas Container in kg.", Format = "F1")] [Limit(1f, 1000000f)]
+        [JsonProperty] [Option("Big Gas Container Capacity (kg)", "Determines the capacity of the Big Gas Container in kg.", Format = "F1")] [Limit(100f, 10000f)]
         public float BigGasLockerCapacity { get; set; } = 750f;
-        [JsonProperty] [Option("Big Liquid Storage Capacity (kg)", "Determines the capacity of the Big Liquid Storage in kg.", Format = "F1")] [Limit(1f, 1000000f)]
+        [JsonProperty] [Option("Big Liquid Storage Capacity (kg)", "Determines the capacity of the Big Liquid Storage in kg.", Format = "F1")] [Limit(1000f, 100000f)]
         public float BigLiquidStorageCapacity { get; set; } = 25000f; 
         
         // Colour
