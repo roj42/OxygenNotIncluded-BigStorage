@@ -5,6 +5,7 @@ using CaiLib;
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using PeterHan.PLib.Options;
 
 namespace BigStorage
 {
@@ -22,8 +23,10 @@ namespace BigStorage
 		public override void OnLoad(Harmony harmony)
 		{
 			CaiLib.Logger.Logger.LogInit();
-			_configManager = new ConfigManager<Config>(null, "config.json");
-			_configManager.ReadConfig(null);
+            POptions pOptions = new POptions();
+            pOptions.RegisterOptions(this, typeof(Config));
+            BigStorageConfigMod._configManager = new ConfigManager<Config>(null, "config.json");
+			BigStorageConfigMod._configManager.ReadConfig(null);
             harmony.PatchAll();
         }
 
@@ -63,8 +66,8 @@ namespace BigStorage
                 }
             }
 
-            private static Color32 defaultColor = new Color32(_configManager.Config.Red, _configManager.Config.Green, _configManager.Config.Blue, 255);
-            private static Color32 beautifulColor = new Color32(_configManager.Config.BeautifulRed, _configManager.Config.BeautifulGreen, _configManager.Config.BeautifulBlue, 255);
+            private static Color32 defaultColor = new Color32((byte) _configManager.Config.Red, (byte) _configManager.Config.Green, (byte) _configManager.Config.Blue, 255);
+            private static Color32 beautifulColor = new Color32((byte) _configManager.Config.BeautifulRed, (byte) _configManager.Config.BeautifulGreen, (byte) _configManager.Config.BeautifulBlue, 255);
 
 
 
