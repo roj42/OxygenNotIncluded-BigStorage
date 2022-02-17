@@ -66,8 +66,8 @@ namespace BigStorage
                 }
             }
 
-            private static Color32 defaultColor = new Color32(_configManager.Config.Red, _configManager.Config.Green, _configManager.Config.Blue, 255);
-            private static Color32 beautifulColor = new Color32(_configManager.Config.BeautifulRed, _configManager.Config.BeautifulGreen, _configManager.Config.BeautifulBlue, 255);
+            private static Color32 defaultColor = new Color32((byte) _configManager.Config.Red, (byte) _configManager.Config.Green, (byte) _configManager.Config.Blue, 255);
+            private static Color32 beautifulColor = new Color32((byte) _configManager.Config.BeautifulRed, (byte) _configManager.Config.BeautifulGreen, (byte) _configManager.Config.BeautifulBlue, 255);
 
 
 
