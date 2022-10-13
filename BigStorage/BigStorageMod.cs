@@ -134,15 +134,6 @@ namespace BigStorage
                                 traverse.Field("filterTint").SetValue(beautifulColor);
                                 CaiLib.Logger.Logger.Log(string.Concat("setting beautifulColor", beautifulColor.ToString()));
                             }
-
-                            ////Since the Sweet Dreams update, this will be null on old saves. I don't know why, I just work here.
-                            ///And on deeper investigation, we don't even need this
-                            //if (!traverse.Field<List<Tag>>("acceptedTags").Value.IsNullOrDestroyed())
-                            //{
-                            //    HashSet<Tag> array = new HashSet<Tag>(traverse.Field<List<Tag>>("acceptedTags").Value);
-                            //    treeFilterable.OnFilterChanged(array);
-                            //}
-                            //else {  CaiLib.Logger.Logger.Log("Error");}
                         }
                     }
                 }
