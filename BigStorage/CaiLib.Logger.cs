@@ -12,31 +12,31 @@ namespace CaiLib.Logger
 		public static void LogInit()
 		{
             string message = string.Format("{0} <<-- CaiLib -->> Loaded [ {1} ] with version {2}", Logger.Timestamp(), Logger.GetModName(), Assembly.GetExecutingAssembly().GetName().Version);
-			Console.WriteLine(message);
-            //using (StreamWriter writer = File.AppendText("CailibLog.txt"))
-            //    {
-            //                writer.WriteLine(message);
-            //    }
+            //Console.WriteLine(message);
+            using (StreamWriter writer = File.CreateText("BigStorageLog.txt"))
+            {
+                writer.WriteLine(message);
+            }
         }
 
 		// Token: 0x06000017 RID: 23 RVA: 0x0000249C File Offset: 0x0000069C
 		public static void Log(string message)
 		{
             string logline = string.Concat(new string[]
-        {
-                Logger.Timestamp(),
-                " <<-- ",
-                Logger.GetModName(),
-                " -->> ",
-                message
-        });
-			Console.WriteLine(logline);
+                {
+                        Logger.Timestamp(),
+                        " <<-- ",
+                        Logger.GetModName(),
+                        " -->> ",
+                        message
+                });
+			//Console.WriteLine(logline);
 
-            //using (StreamWriter writer = File.AppendText("CailibLog.txt"))
-            //    {
-            //                writer.WriteLine(logline);
-            //    }
-		}
+            using (StreamWriter writer = File.AppendText("BigStorageLog.txt"))
+            {
+                writer.WriteLine(logline);
+            }
+        }
 
 		// Token: 0x06000018 RID: 24 RVA: 0x000024D4 File Offset: 0x000006D4
 		private static string Timestamp()

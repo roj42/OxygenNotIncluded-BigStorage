@@ -19,20 +19,20 @@ namespace BigStorage
         [JsonProperty] [Option("Big Liquid Storage Capacity (kg)", "Determines the capacity of the Big Liquid Storage in kg.", "Capacity", Format = "F1")] [Limit(1000, 100000)]
         public int BigLiquidStorageCapacity { get; set; } = 25000; 
         
-        // Colour
-        [JsonProperty] [Option("Red", "Set the RED tint for the Big Storages.", "Colour Storage Locker")] [Limit(0, 255)]
+        // Color
+        [JsonProperty] [Option("Red", "Set the RED tint for the Big Storages.", "Color Storage Locker")] [Limit(0, 255)]
         public int Red { get; set; } = 0;
-        [JsonProperty] [Option("Green", "Set the GREEN tint for the Big Storages.", "Colour Storage Locker")] [Limit(0, 255)]
+        [JsonProperty] [Option("Green", "Set the GREEN tint for the Big Storages.", "Color Storage Locker")] [Limit(0, 255)]
 		public int Green { get; set; } = 150;
-        [JsonProperty] [Option("Blue", "Set the BLUE tint for the Big Storages.", "Colour Storage Locker")] [Limit(0, 255)]
+        [JsonProperty] [Option("Blue", "Set the BLUE tint for the Big Storages.", "Color Storage Locker")] [Limit(0, 255)]
 		public int Blue { get; set; } = 255;
 
-        //Colour Beautiful
-        [JsonProperty] [Option("Red (Beautiful)", "Set the RED tint for the Big Beautiful Storages.", "Colour Beautiful Storage Locker")] [Limit(0f, 255f)]
+        //Color Beautiful
+        [JsonProperty] [Option("Red (Beautiful)", "Set the RED tint for the Big Beautiful Storages.", "Color Beautiful Storage Locker")] [Limit(0, 255)]
 		public int BeautifulRed { get; set; } = 200;
-        [JsonProperty] [Option("Green (Beautiful)", "Set the GREEN tint for the Big Beautiful Storages.", "Colour Beautiful Storage Locker")] [Limit(0f, 255f)]
+        [JsonProperty] [Option("Green (Beautiful)", "Set the GREEN tint for the Big Beautiful Storages.", "Color Beautiful Storage Locker")] [Limit(0, 255)]
 		public int BeautifulGreen { get; set; } = 0;
-        [JsonProperty] [Option("Blue (Beautiful)", "Set the BLUE tint for the Big Beautiful Storages.", "Colour Beautiful Storage Locker")] [Limit(0f, 255f)]
+        [JsonProperty] [Option("Blue (Beautiful)", "Set the BLUE tint for the Big Beautiful Storages.", "Color Beautiful Storage Locker")] [Limit(0, 255)]
 		public int BeautifulBlue { get; set; } = 255;
 	}
 }

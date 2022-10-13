@@ -117,25 +117,35 @@ namespace BigStorage
                             }
                         }
 
-                        if (building.name.ToString().StartsWith("BigSolidStorage") || building.name.ToString().StartsWith("BigBeautifulStorage"))
+                    if (building.name.ToString().StartsWith("BigSolidStorage") || building.name.ToString().StartsWith("BigBeautifulStorage"))
+                    {
+                        TreeFilterable treeFilterable = building.GetComponent<TreeFilterable>();
+                        if (treeFilterable != null)
                         {
-                            TreeFilterable treeFilterable = building.GetComponent<TreeFilterable>();
-                            if (treeFilterable != null)
-                            {
-                                Traverse traverse = Traverse.Create(treeFilterable);
+                            CaiLib.Logger.Logger.Log("got tree filterable");
+                            Traverse traverse = Traverse.Create(treeFilterable);
                             if (building.name.ToString().StartsWith("BigSolidStorage"))
                             {
                                 traverse.Field("filterTint").SetValue(defaultColor);
+                                 CaiLib.Logger.Logger.Log(string.Concat("setting default color", defaultColor.ToString()));
                             }
                             if (building.name.ToString().StartsWith("BigBeautifulStorage"))
                             {
                                 traverse.Field("filterTint").SetValue(beautifulColor);
+                                CaiLib.Logger.Logger.Log(string.Concat("setting beautifulColor", beautifulColor.ToString()));
                             }
-                                Tag[] array = traverse.Field<List<Tag>>("acceptedTags").Value.ToArray();
-                                treeFilterable.OnFilterChanged(array);
-                            }
+
+                            ////Since the Sweet Dreams update, this will be null on old saves. I don't know why, I just work here.
+                            ///And on deeper investigation, we don't even need this
+                            //if (!traverse.Field<List<Tag>>("acceptedTags").Value.IsNullOrDestroyed())
+                            //{
+                            //    HashSet<Tag> array = new HashSet<Tag>(traverse.Field<List<Tag>>("acceptedTags").Value);
+                            //    treeFilterable.OnFilterChanged(array);
+                            //}
+                            //else {  CaiLib.Logger.Logger.Log("Error");}
                         }
                     }
+                }
 
                 private static void TryInitMod()
                 {
